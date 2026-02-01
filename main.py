@@ -8,7 +8,7 @@ from tensorflow.keras.models import load_model
 word_index = imdb.get_word_index()
 reverse_word_index = {value: key for key, value in word_index.items()}
 
-model = load_model('rnn_imdb.h5')
+model = load_model('imdb_model.h5')
 
 
 def decode_review(encoded_review):
@@ -36,7 +36,7 @@ if st.button('Classify'):
 
     # prediction
     prediction=model.predict(preprocessed_input)
-    sentiment='Positive' if prediction[0][0] > 0.7 else 'Negative'
+    sentiment='Positive' if prediction[0][0] > 0.5 else 'Negative'
 
     
     st.write(f'Sentiment: {sentiment}')
